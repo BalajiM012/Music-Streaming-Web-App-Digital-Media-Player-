@@ -1,0 +1,383 @@
+{
+  "info": {
+    "name": "Lamentix Music Streaming API",
+    "description": "API collection for testing Lamentix backend endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/health",
+          "host": ["{{base_url}}"],
+          "path": ["api", "health"]
+        }
+      }
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/categories",
+              "host": ["{{base_url}}"],
+              "path": ["api", "categories"],
+              "query": [
+                {
+                  "key": "include_counts",
+                  "value": "true",
+                  "description": "Include track and podcast counts"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Category by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/categories/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "categories", ":id"],
+              "query": [
+                {
+                  "key": "include_content",
+                  "value": "true",
+                  "description": "Include tracks and podcasts"
+                }
+              ]
+            },
+            "variable": [
+              {
+                "key": "id",
+                "value": "category-uuid-here"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New Category\",\n  \"description\": \"Category description\",\n  \"image_url\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/categories",
+              "host": ["{{base_url}}"],
+              "path": ["api", "categories"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tracks",
+      "item": [
+        {
+          "name": "Get All Tracks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/tracks?limit=10&page=1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tracks"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "search",
+                  "value": "",
+                  "description": "Search query"
+                },
+                {
+                  "key": "genre",
+                  "value": "",
+                  "description": "Filter by genre"
+                },
+                {
+                  "key": "category",
+                  "value": "",
+                  "description": "Filter by category ID"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Track by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/tracks/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tracks", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "track-uuid-here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Popular Tracks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/tracks/popular/top?limit=20",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tracks", "popular", "top"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Tracks by Genre",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/tracks/genre/:genre",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tracks", "genre", ":genre"],
+              "variable": [
+                {
+                  "key": "genre",
+                  "value": "Pop"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Track",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Sample Song\",\n  \"artist\": \"Sample Artist\",\n  \"album\": \"Sample Album\",\n  \"genre\": \"Pop\",\n  \"duration\": 180,\n  \"audio_url\": \"https://example.com/song.mp3\",\n  \"cover_image\": \"https://example.com/cover.jpg\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/tracks",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tracks"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Podcasts",
+      "item": [
+        {
+          "name": "Get All Podcasts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/podcasts?limit=10&page=1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "podcasts"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "search",
+                  "value": "",
+                  "description": "Search query"
+                },
+                {
+                  "key": "category",
+                  "value": "",
+                  "description": "Filter by category"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Podcast by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/podcasts/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "podcasts", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "podcast-uuid-here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Popular Podcasts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/podcasts/popular/top?limit=20",
+              "host": ["{{base_url}}"],
+              "path": ["api", "podcasts", "popular", "top"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Podcast",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Sample Podcast\",\n  \"host\": \"Sample Host\",\n  \"description\": \"A sample podcast\",\n  \"category\": \"General\",\n  \"duration\": 3600,\n  \"audio_url\": \"https://example.com/podcast.mp3\",\n  \"cover_image\": \"https://example.com/podcast.jpg\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/podcasts",
+              "host": ["{{base_url}}"],
+              "path": ["api", "podcasts"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/me",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "me"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
+
