@@ -1,0 +1,3 @@
+C:\Users\admin\anaconda3
+C:\Users\admin\anaconda3\envs\new
+C:\Users\admin\anaconda3\envs\environment3d
