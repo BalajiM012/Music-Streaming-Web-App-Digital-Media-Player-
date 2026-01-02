@@ -1,0 +1,45 @@
+.error-boundary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: var(--spacing-xl);
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.error-boundary svg {
+  margin-bottom: var(--spacing-lg);
+  color: #ff6b6b;
+  opacity: 0.8;
+}
+
+.error-boundary h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
+}
+
+.error-boundary p {
+  font-size: 16px;
+  margin-bottom: var(--spacing-xl);
+  max-width: 400px;
+}
+
+.error-retry-btn {
+  padding: var(--spacing-md) var(--spacing-xl);
+  background-color: var(--accent);
+  color: var(--text-primary);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 14px;
+  transition: all var(--transition-base);
+}
+
+.error-retry-btn:hover {
+  background-color: var(--accent-hover);
+  transform: scale(1.05);
+}
+
